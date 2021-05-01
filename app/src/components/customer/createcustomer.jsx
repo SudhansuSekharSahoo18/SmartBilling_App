@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col, Card, Modal } from "react-bootstrap";
 import ReactDOM from "react-dom";
-import handelFormChange from "../helper/handleFromChange";
+import { handelFormChange } from "../helper/methodhelper";
 
 export default class CreateCustomer extends Component {
   state = {
@@ -97,7 +97,7 @@ export default class CreateCustomer extends Component {
                       type="radio"
                       label="Other"
                       name="formHorizontalRadios"
-                      id="formHorizontalRadios2"
+                      id="formHorizontalRadios3"
                     />
                   </Form.Row>
                 </Form.Group>

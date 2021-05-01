@@ -9,6 +9,7 @@ import PageNotFound from "../404pagenotfound";
 import GenrateBarcode from "../body/barcode/barcode";
 import CreateBill from "../bill/createBill";
 import Bills from "../bill/bill";
+import Customers from "../customer/customers";
 
 export default function Home() {
   let { path, url } = useRouteMatch();
@@ -17,6 +18,7 @@ export default function Home() {
     { id: 1, name: "Bills", link: "/bills" },
     { id: 2, name: "Create Bill", link: "/createbill" },
     { id: 3, name: "Genrate Barcode", link: "/barcode" },
+    { id: 4, name: "Customers", link: "/customers" },
   ];
   return (
     <React.Fragment>
@@ -42,6 +44,7 @@ export default function Home() {
                   exact
                   component={GenrateBarcode}
                 />
+                <Route path={`${path}/customers`} exact component={Customers} />
                 <Route path={`${path}/*`} component={PageNotFound} />
               </Switch>
             </Col>
