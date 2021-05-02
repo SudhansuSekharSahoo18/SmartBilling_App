@@ -7,6 +7,8 @@ import {
   FormGroup,
   Container,
   Table,
+  Row,
+  Col,
 } from "react-bootstrap";
 import ReactToPrint from "react-to-print";
 import { handelFormChange } from "../helper/methodhelper";
@@ -62,49 +64,43 @@ export default class CreateBill extends Component {
     );
     return (
       <React.Fragment>
-        <Form inline className="mt-3 ml-5">
-          <FormGroup controlId="searchdropdown">
-            <Form.Control as="select" onChange={handelFormChange.bind(this)}>
-              <option value="productcode">Product#</option>
-              <option value="itemname">Item Name</option>
-              <option value="quantity">Quantity</option>
-            </Form.Control>
-          </FormGroup>
-          <FormGroup controlId="search">
-            <FormControl
-              type="text"
-              placeholder="Search"
-              className="mr-2 ml-2"
-              onChange={handelFormChange.bind(this)}
+        <Row>
+          <Form inline className="mt-3 ml-5">
+            <FormGroup controlId="searchdropdown">
+              <Form.Control as="select" onChange={handelFormChange.bind(this)}>
+                <option value="productcode">Product#</option>
+                <option value="itemname">Item Name</option>
+                <option value="quantity">Quantity</option>
+              </Form.Control>
+            </FormGroup>
+            <FormGroup controlId="search">
+              <FormControl
+                type="text"
+                placeholder="Search"
+                className="mr-2 ml-2"
+                onChange={handelFormChange.bind(this)}
+              />
+            </FormGroup>
+            <Button variant="outline-success">Search</Button>
+          </Form>
+        </Row>
+        <Row>
+          <Col>
+            <Container className="mt-3 mr-2">
+              <ComponentToPrint
+                data={this.state.billproducts}
+                ref={(el) => (this.componentRef = el)}
+              />
+            </Container>
+          </Col>
+          <Col>
+            <ReactToPrint
+              trigger={() => <a href="#">Print this out!</a>}
+              content={() => this.componentRef}
+              documentTitle="Biil"
             />
-          </FormGroup>
-          <Button variant="outline-success">Search</Button>
-        </Form>
-        <Container className="mt-3 mr-2">
-          <Table striped bordered hover size="sm">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">Product#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Size</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-              </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-          </Table>
-        </Container>
-        <Container className="mt-3 mr-2">
-          <ComponentToPrint
-            data={this.state.billproducts}
-            ref={(el) => (this.componentRef = el)}
-          />
-        </Container>
-        <ReactToPrint
-          trigger={() => <a href="#">Print this out!</a>}
-          content={() => this.componentRef}
-          documentTitle = "Biil"
-        />
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }
